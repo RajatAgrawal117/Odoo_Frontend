@@ -13,6 +13,8 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token =localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    setUserDetails(JSON.parse(user));
     setIsLoggedIn(!!token);
   }, []);
 
@@ -24,6 +26,7 @@ export const AuthProvider = ({ children }) => {
         router.push('/dashboard');
         localStorage.setItem('token', token);
         setIsLoggedIn(true);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         
     } catch(error){
         console.log(error);
