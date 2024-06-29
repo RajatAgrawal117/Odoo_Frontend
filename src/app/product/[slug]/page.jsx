@@ -1,9 +1,25 @@
-import React from 'react';
+'use client'
+import React,{useEffect} from 'react';
 import { furnitureData } from '@/app/products/list';
+import axios from 'axios';
 
 export default function Page({ params }) {
     const product_id=params.slug
-    const productshow = furnitureData.find((product) => product._id === product_id)
+    const [productshow, setProductShow] = React.useState({}); 
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`https://furniture-renting-odoo-combat.onrender.com/api/furniture/${product_id}`);
+                console.log(response.data.furniture);
+                setProductShow(response.data.furniture);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, [product_id]);
 
   return(
     <> 
