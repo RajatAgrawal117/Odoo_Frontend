@@ -47,7 +47,7 @@ const Profile = () => {
               <div className=" mr-3 rounded-xl">
                 <img
                   className=" rounded-full object-cover my-auto "
-                  src={profilepic}
+                  src="image.jpeg"
                   alt="Profile"
                 />
               </div>
